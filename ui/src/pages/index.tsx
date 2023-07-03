@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import GradientBG from '../components/GradientBG.js';
 import styles from '../styles/Home.module.css';
 import MyForm from '@/components/Form';
+import Seat from '@/components/Seat';
+import Header from '@/components/Header';
 
 export default function Home() {
   // useEffect(() => {
@@ -33,8 +35,12 @@ export default function Home() {
         <meta name="description" content="Online Poker DApp which uses ZK proof" />
         <link rel="icon" href="/assets/favicon.ico" />
       </Head>
-      <main className={`bg-black h-full w-full text-white bg-[url('/assets/poker-table.png')] bg-cover bg-center absolute`} >
-        <MyForm/>
+      <main className={`bg-gray-900 h-full w-full text-white bg-[url('/assets/poker-table.png')] bg-cover bg-center absolute px-10`} >
+       <Header />
+       <div className='p-10'>
+        <Seat />
+       </div>
+        
         </main>
     </>
   );

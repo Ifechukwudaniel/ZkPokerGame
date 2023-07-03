@@ -1,0 +1,1 @@
+export type FormValues = { username: string; intendedStack : number; setUsername: Function; setIntendedStack: Function; setFormPopup:Function; setSeatOccupied:Function };
