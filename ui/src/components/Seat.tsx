@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import MyForm from "./Form"
-function Seat() {
+function Seat(props : {id : number}) {
   const [seatOccupied, setSeatOccupied] = useState<boolean>(false)
   const [formPopup, setFormPopup] = useState<boolean>(false)
   const [username, setUsername] = useState<string>('');
@@ -38,7 +38,7 @@ function Seat() {
            </div>
            </>
            :
-           <div className="text-white text-center p-7">SIT</div>
+           <div className="text-white text-center p-7">{props.id}  SIT</div>
        }
       </div>
     </div>

@@ -35,12 +35,35 @@ export default function Home() {
         <meta name="description" content="Online Poker DApp which uses ZK proof" />
         <link rel="icon" href="/assets/favicon.ico" />
       </Head>
-      <main className={`bg-gray-900 h-full w-full text-white bg-[url('/assets/poker-table.png')] bg-cover bg-center absolute px-10`} >
+      <main className={`bg-gray-900 h-full w-full text-white bg-[url('/assets/poker-table.png')] bg-auto bg-center absolute px-10`} >
        <Header />
-       <div className='p-10'>
-        <Seat />
+       <div className='py-20 px-10 flex justify-between relative'>
+        <div className='absolute left-60'>
+        <Seat id={1}  />
+        </div>
+        <div className='absolute right-60'>
+        <Seat id={2}  />
+        </div>
+        <div className='absolute top-72'>
+        <Seat id={3}  />
+        </div>
+        <div className='absolute right-10 top-72'>
+        <Seat id={4}  />
+        </div>
+        <div className={`absolute left-60 ${styles.topm}`}>
+        <Seat id={5}  />
+        </div>
+        <div className={`absolute right-60 ${styles.topm}`}> 
+        <Seat id={6}  />
+        </div>
        </div>
-        
+       <div className='p-10 text-center'>Pool Amount</div>
+       <div className='flex space-x-4 justify-center'>
+        <Image src={'/assets/Cards/2c.png'} width={75} height={125} alt='card-1' />
+        <Image src={'/assets/card.png'} width={75} height={125} alt='card-1' />
+        <Image src={'/assets/card.png'} width={75} height={125} alt='card-1' />
+        <Image src={'/assets/card.png'} width={75} height={125} alt='card-1' />
+       </div>
         </main>
     </>
   );
