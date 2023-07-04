@@ -1,4 +1,4 @@
-import { Token } from './Token';
+import { Token } from '../../src/Token/Token';
 import {
   isReady,
   shutdown,
