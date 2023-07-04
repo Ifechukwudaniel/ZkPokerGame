@@ -26,7 +26,7 @@ describe('Card', () => {
   });
 
   describe('clone', () => {
-    it('returns a new Piece with the same values', async () => {
+    it('returns a new Card with the same values', async () => {
       const newCard = new Card({
         color: Character.fromString(CardColor.BLACK),
         rank: Character.fromString(CardRank.ACE),
