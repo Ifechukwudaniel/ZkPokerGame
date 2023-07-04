@@ -9,6 +9,9 @@ function Header() {
       <Link href="/Token" className="inline-flex  bg-gray-700 p-1 px-3">
         Mint Token
       </Link>
+      <Link href="/Results" className="inline-flex  bg-gray-600 p-1 px-3">
+        Result
+      </Link>
     </div>
   );
 }
