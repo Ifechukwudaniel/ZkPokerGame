@@ -1,4 +1,12 @@
 {
   "version": 1,
-  "deployAliases": {}
+  "deployAliases": {
+    "pokerapp": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/pokerapp.json",
+      "feepayerKeyPath": "/Users/emmanuelpepple/.cache/zkapp-cli/keys/pokergame.json",
+      "feepayerAlias": "pokergame",
+      "fee": "1"
+    }
+  }
 }
