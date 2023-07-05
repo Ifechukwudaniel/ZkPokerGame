@@ -2,7 +2,8 @@
 # Mina-Poker-Game
 This is a poker game  implemented with zero knowledge of Proof 
 
-<img width="1440" alt="Screenshot 2023-07-05 at 7 45 45 PM" src="https://github.com/Ifechukwudaniel/ZkPokerGame/assets/47566579/d492743a-062e-4cd7-bc3b-f7f1b938d95a">
+<img width="1440" alt="Screenshot 2023-07-05 at 10 22 05 PM" src="https://github.com/Ifechukwudaniel/mina-poker-game/assets/47566579/bd0b06f9-71ce-4ae4-b674-5c7fe9224547">
+
 <img width="1440" alt="Screenshot 2023-07-05 at 7 45 49 PM" src="https://github.com/Ifechukwudaniel/ZkPokerGame/assets/47566579/2d276d7f-aa23-405c-8cba-1d17a43e1787">
 <img width="1440" alt="Screenshot 2023-07-05 at 7 45 52 PM" src="https://github.com/Ifechukwudaniel/ZkPokerGame/assets/47566579/ea1ce0e9-b662-4bf8-a3ec-e92b6858a96f">
 
