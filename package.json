@@ -1,0 +1,19 @@
+{
+  "name": "pokergame",
+  "version": "1.0.0",
+  "description": "THis is a poker game  implemented with zero knowledge Proof",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ifechukwudaniel/ZkPokerGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ifechukwudaniel/ZkPokerGame/issues"
+  },
+  "homepage": "https://github.com/Ifechukwudaniel/ZkPokerGame#readme"
+}

@@ -8,6 +8,8 @@ import {
   UInt32,
   PublicKey,
   CircuitString,
+  Circuit,
+  Provable,
 } from 'snarkyjs';
 import { Card } from './Card';
 
@@ -16,6 +18,7 @@ export class Player extends Struct({
   bet: UInt32,
   raise: UInt32,
   holeCards: [Card, Card],
+  stack: UInt32,
   folded: Bool,
   showCards: Bool,
   left: Bool,
@@ -26,6 +29,7 @@ export class Player extends Struct({
       id: new UInt32(userNumber),
       bet: new UInt32(0),
       raise: new UInt32(0),
+      stack: new UInt32(0),
       folded: Bool(false),
       showCards: Bool(false),
       holeCards: [],
@@ -33,15 +37,17 @@ export class Player extends Struct({
       address,
     });
   }
+
   hash(): Field {
-    let publicKeyHash = CircuitString.fromString(this.address.toJSON());
     return Poseidon.hash([
+      this.id.value,
       this.bet.value,
       this.raise.value,
       this.folded.toField(),
       this.showCards.toField(),
       this.left.toField(),
-      publicKeyHash.hash(),
+      this.address.x,
+      this.address.isOdd.toField(),
     ]);
   }
 
@@ -54,6 +60,7 @@ export class Player extends Struct({
       showCards: Bool.fromJSON(this.showCards.toJSON()),
       left: Bool.fromJSON(this.left.toJSON()),
       address: PublicKey.fromBase58(this.address.toJSON()),
+      stack: UInt32.from(this.stack),
     };
     let clone = new Player(
       parseInt(this.id.toString()),
@@ -64,9 +71,29 @@ export class Player extends Struct({
     clone.folded = data.folded;
     clone.showCards = data.showCards;
     clone.left = data.left;
+    clone.stack = this.stack;
     return clone;
   }
 
+  setPlayerCard(card1: Card, card2: Card) {
+    this.holeCards = [card1, card2];
+  }
+
+  clearPlayerCard() {
+    this.holeCards = [];
+  }
+
+  setShowCard(show: boolean) {
+    this.showCards = Bool(show);
+  }
+
+  cardToJson(): string {
+    this.showCards.assertEquals(true);
+    return JSON.stringify({
+      card1: this.holeCards[0].toJson(),
+      card2: this.holeCards[1].toJson(),
+    });
+  }
   toJson(): string {
     return JSON.stringify({
       id: this.id.toString(),

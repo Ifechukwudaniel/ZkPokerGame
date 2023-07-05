@@ -45,8 +45,9 @@ export default function Home() {
         const publicKey = PublicKey.fromBase58(publicKeyBase58);
 
         console.log('using key', publicKey.toBase58());
-
-        console.log('checking if account exists...');
+          
+      const { PublicKey } = await import('snarkyjs');
+       console.log('checking if account exists...');
         const res = await zkappWorkerClient.fetchAccount({
           publicKey: publicKey!,
         });

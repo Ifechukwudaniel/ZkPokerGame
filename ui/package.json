@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ts-watch": "tsc --noEmit --incremental --watch"
+    "ts-watch": "tsc --noEmit --incremental --watch",
+    "check-types": "tsc --noEmit --incremental",
+    "vercel": "vercel",
+    "vercel:yolo": "vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true"
   },
   "dependencies": {
     "@types/node": "20.3.3",
