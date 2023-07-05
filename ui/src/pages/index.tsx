@@ -7,6 +7,10 @@ import Seat from '@/components/Seat';
 import Header from '@/components/Header';
 
 export default function Home() {
+  function foo() {
+    console.log('foo');
+  }
+  
   useEffect(() => {
     (async () => {
       const { Mina, PublicKey } = await import('snarkyjs');
@@ -62,6 +66,20 @@ export default function Home() {
         <Image src={'/assets/card.png'} width={75} height={125} alt='card-1' />
         <Image src={'/assets/card.png'} width={75} height={125} alt='card-1' />
         <Image src={'/assets/card.png'} width={75} height={125} alt='card-1' />
+       </div>
+       <div className='mt-60 flex justify-center align-middle space-x-5 p-2'>
+          <button onClick={foo} className='p-6 text-emerald-800 hover:text-emerald-600 hover:border-emerald-600 border-solid border border-emerald-800 rounded-xl'>
+              CALL 10
+          </button>
+          <button onClick={foo} className='p-6 text-gray-700 hover:text-gray-500 hover:border-gray-500 border-solid border border-gray-700 rounded-xl'>
+            RAISE
+          </button>
+          <button onClick={foo} className='p-6 text-gray-700 hover:text-gray-500 hover:border-gray-500 border-solid border border-gray-700 rounded-xl'>
+            CHECK
+          </button>
+          <button onClick={foo} className='p-6 text-red-900 hover:text-red-700 hover:border-red-700 border-solid border border-red-900 rounded-xl'>
+              FOLD
+          </button>
        </div>
         </main>
     </>
