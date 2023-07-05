@@ -11,49 +11,65 @@ import { Pot } from '../../../src/PokerGame/objects/Pot';
 import { Player } from '../../../src/PokerGame/objects/Player';
 
 describe('Pot', () => {
+  let playersAddress = new Array(5).fill(null);
+  playersAddress = playersAddress.map(() => PrivateKey.random().toPublicKey());
+  const players = playersAddress.map((address, id) => new Player(id, address));
+  let winners = [players[0].clone(), players[1].clone()];
+  let amount = 1000;
+
   describe('hash', () => {
-    // it('returns the expected hash', async () => {
-    //   let playerAddress = PrivateKey.random().toPublicKey()
-    //   const newPlayer= new Player(1,playerAddress);
-    //   let publicKeyHash = CircuitString.fromString(newPlayer.address.toJSON()).hash()
-    //   expect(newPlayer.hash().toString()).toBe(
-    //     Poseidon.hash([
-    //       newPlayer.bet.value,
-    //       newPlayer.raise.value,
-    //       newPlayer.folded.toField(),
-    //       newPlayer.showCards.toField(),
-    //       newPlayer.left.toField(),
-    //       publicKeyHash
-    //     ]).toString()
-    //   );
-    // });
+    it('returns the expected hash', async () => {
+      let currentPot = new Pot({
+        amount: new UInt32(amount),
+        eligiblePlayers: players,
+        winners,
+      });
+      expect(currentPot.hash().toString()).toBe(
+        Poseidon.hash([
+          Character.fromString(currentPot.amount.toString()).toField(),
+        ]).toString()
+      );
+    });
   });
 
   describe('clone', () => {
     it('returns a new Player with the same values', async () => {
-      // let playerAddress1 = PrivateKey.random().toPublicKey();
-      // const newPlayer = new Player(1, playerAddress);
-      // const playerClone = newPlayer.clone();
-      // expect(playerClone.toJson()).toBe(newPlayer.toJson());
+      let currentPot = new Pot({
+        amount: new UInt32(amount),
+        eligiblePlayers: players,
+        winners,
+      });
+      const potClone = currentPot.clone();
+      expect(potClone.toJson()).toBe(currentPot.toJson());
     });
 
     it('can edit the clone without affecting the original', async () => {
-      // let playerAddress = PrivateKey.random().toPublicKey();
-      // const newPlayer = new Player(1, playerAddress);
-      // const playerClone = newPlayer.clone();
-      // expect(playerClone.toJson()).toBe(newPlayer.toJson());
-      // playerClone.left = Bool(true);
-      // expect(playerClone.toJson()).not.toBe(newPlayer.toJson());
-      // playerClone.bet = new UInt32(100);
-      // expect(playerClone.toJson()).not.toBe(newPlayer.toJson());
-      // playerClone.showCards = Bool(true);
-      // expect(playerClone.toJson()).not.toBe(newPlayer.toJson());
+      let currentPot = new Pot({
+        amount: new UInt32(amount),
+        eligiblePlayers: players,
+        winners,
+      });
+      const potClone = currentPot.clone();
+      expect(potClone.toJson()).toBe(currentPot.toJson());
+      potClone.increasePotSize(100);
+      expect(potClone.toJson()).not.toBe(currentPot.toJson());
+      potClone.winners.push(players[2].clone());
+      expect(potClone.toJson()).not.toBe(currentPot.toJson());
+      potClone.winners = [];
+      expect(potClone.toJson()).not.toBe(currentPot.toJson());
     });
   });
 
-  describe('add player card', () => {
-    it('it can add player card', async () => {
-      // console.log('djjdjd');
+  describe('pot size', () => {
+    it('it can increase pot size', async () => {
+      let currentPot = new Pot({
+        amount: new UInt32(amount),
+        eligiblePlayers: players,
+        winners,
+      });
+      expect(currentPot.amount.toString()).toBe(amount.toString());
+      // currentPot.increasePotSize(100)
+      // expect(currentPot.amount.toString()).toBe((amount+100).toString())
     });
   });
 });

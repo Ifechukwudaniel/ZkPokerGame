@@ -16,19 +16,27 @@ export class Pot extends Struct({
   winners: [Player],
 }) {
   hash(): Field {
-    let playersHash = this.eligiblePlayers.map((player) => player.hash());
-    let winners = this.winners.map((winner) => winner.hash());
-    return Poseidon.hash([this.amount.value, ...playersHash, ...winners]);
+    return Poseidon.hash([
+      Character.fromString(this.amount.toString()).toField(),
+    ]);
   }
 
   clone(): Pot {
     let players = this.eligiblePlayers.map((player) => player.clone());
     let winners = this.winners.map((winner) => winner.clone());
-    return new Pot({
-      amount: UInt32.from(this.amount),
-      eligiblePlayers: players,
-      winners,
+    let potClone = new Pot({
+      amount: UInt32.from(0),
+      eligiblePlayers: [],
+      winners: [],
     });
+    potClone.amount = UInt32.from(this.amount.toString());
+    potClone.eligiblePlayers = players;
+    potClone.winners = winners;
+    return potClone;
+  }
+
+  increasePotSize(increase: number) {
+    this.amount = this.amount.add(increase);
   }
 
   toJson(): string {
