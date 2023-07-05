@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css';
 import Seat from '@/components/Seat';
 import Header from '@/components/Header';
 
-import ZkappWorkerClient from './zkappWorkerClient';
+import ZkappWorkerClient from '../zkapp/zkappWorkerClient';
 import { PublicKey, Field } from 'snarkyjs';
 
 export default function Home() {
@@ -41,12 +41,12 @@ export default function Home() {
           setState({ ...state, hasWallet: false });
           return;
         }
+        const { PublicKey } = await import('snarkyjs');
         const publicKeyBase58: string = (await mina.requestAccounts())[0];
-        const publicKey = PublicKey.fromBase58(publicKeyBase58);
+        const publicKey = PublicKey .fromBase58(publicKeyBase58);
 
         console.log('using key', publicKey.toBase58());
           
-      const { PublicKey } = await import('snarkyjs');
        console.log('checking if account exists...');
         const res = await zkappWorkerClient.fetchAccount({
           publicKey: publicKey!,
