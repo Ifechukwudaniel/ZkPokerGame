@@ -7,17 +7,18 @@ export class Card extends Struct({
 }) {
   hash(): Field {
     return Poseidon.hash([
-      this.rank.toField(),
       this.color.toField(),
       this.suit.toField(),
+      this.rank.toField(),
     ]);
   }
-  get rank(): Character {
-    return this.rank;
-  }
 
-  get suit(): Character {
-    return this.suit;
+  clone(): Card {
+    return new Card({
+      color: Character.fromString(this.color.toString()),
+      suit: Character.fromString(this.suit.toString()),
+      rank: Character.fromString(this.rank.toString()),
+    });
   }
 
   toJson(): string {
